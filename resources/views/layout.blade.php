@@ -141,13 +141,22 @@ use App\Helper\Helper;
                 <ul id="main-menu" class="metismenu">
                     <li class="{{ request()->is('/')  == 1 ? "active" : "" }}"><a href="{{ url('/') }}"><i class="icon-home"></i><span>Dashboard</span></a></li>
                     <li class="{{ request()->is('product/*') == 1  ? "active" : "" }}">
-                        <a href="#Tables" class="has-arrow" aria-expanded="{{ request()->is('product/*') == 1 ? "true" : "" }}">
+                        <a href="#" class="has-arrow" aria-expanded="{{ request()->is('product/*') == 1 ? "true" : "" }}">
                             <i class="icon-tag"></i>
                             <span>Product</span>
                         </a>
                         <ul aria-expanded="{{ request()->is('product/*') == 1  ? "true" : "" }}" class="collapse {{ request()->is('product/*') == 1 ? "in" : "" }}">
                             <li class="{{ (request()->is('product/color') == 1 || request()->is('product/color/*') == 1)  ? "active" : "" }}"><a href="{{ url('product/color') }}">Colors</a></li>
                             <li class="{{ (request()->is('product/size') == 1 || request()->is('product/size/*') == 1)  ? "active" : "" }}"><a href="{{ url('product/size') }}">Sizes</a></li>
+                        </ul>
+                    </li>
+                    <li class="{{ request()->is('purchase/*') == 1  ? "active" : "" }}">
+                        <a href="#" class="has-arrow" aria-expanded="{{ request()->is('purchase/*') == 1 ? "true" : "" }}">
+                            <i class="icon-bag"></i>
+                            <span>purchase</span>
+                        </a>
+                        <ul aria-expanded="{{ request()->is('purchase/*') == 1  ? "true" : "" }}" class="collapse {{ request()->is('purchase/*') == 1 ? "in" : "" }}">
+                            <li class="{{ (request()->is('purchase/vendor') == 1 || request()->is('purchase/vendor/*') == 1)  ? "active" : "" }}"><a href="{{ url('purchase/vendor') }}">Vendor</a></li>
                         </ul>
                     </li>
                 </ul>

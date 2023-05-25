@@ -143,6 +143,43 @@ $("#sizes-form").submit(function(event){
     });
 });
 
+$("#vendors-form").submit(function(event){
+    event.preventDefault();
+    processing_popup()
+    $(".field-error").html("&nbsp;");
+    var data = new FormData(document.getElementById("vendors-form"));
+    var hit_url = url + "/purchase/vendor/save";
+    var errors = "";
+    var field = "";
+    jQuery.ajax({
+        url:hit_url,
+        method:"POST",
+        data:data,
+        contentType:false,
+        processData:false,
+        cache:false,
+        success:function(response) {
+            if(response.code == 0)
+            {
+                errors = response.errors;
+                for(var i = 0; i < errors.length; i++)
+                {
+                    field = errors[i].split(" ")[1];
+                    $("."+field+"-error").html(errors[i]);
+                }
+                swal.close();
+            }
+            else if(response.code == 1)
+            {
+                window.location.href = url+"/purchase/vendor";
+            }
+            else if(response.code == 2)
+            {
+                exception(response.message)
+            }
+        }
+    });
+});
 
 function exception(message)
 {

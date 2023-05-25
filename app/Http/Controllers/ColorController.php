@@ -110,7 +110,7 @@ class ColorController extends Controller
                 $response = [
                     'code' => 1,
                 ];
-                session()->flash('success',"Color upadted successfully.");
+                session()->flash('success',"Color updated successfully.");
             }
             else
             {
