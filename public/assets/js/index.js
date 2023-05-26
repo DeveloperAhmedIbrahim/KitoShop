@@ -181,6 +181,44 @@ $("#vendors-form").submit(function(event){
     });
 });
 
+$("#products-form").submit(function(event){
+    event.preventDefault();
+    processing_popup()
+    $(".field-error").html("&nbsp;");
+    var data = new FormData(document.getElementById("products-form"));
+    var hit_url = url + "/product/save";
+    var errors = "";
+    var field = "";
+    jQuery.ajax({
+        url:hit_url,
+        method:"POST",
+        data:data,
+        contentType:false,
+        processData:false,
+        cache:false,
+        success:function(response) {
+            if(response.code == 0)
+            {
+                errors = response.errors;
+                for(var i = 0; i < errors.length; i++)
+                {
+                    field = errors[i].split(" ")[1];
+                    $("."+field+"-error").html(errors[i]);
+                }
+                swal.close();
+            }
+            else if(response.code == 1)
+            {
+                window.location.href = url+"/product";
+            }
+            else if(response.code == 2)
+            {
+                exception(response.message)
+            }
+        }
+    });
+});
+
 function exception(message)
 {
     swal({
@@ -227,3 +265,14 @@ function confirm_delete(name,path)
         }
     });
 }
+
+var load_product_image = function(event) {
+    var output = document.getElementById('product-image-preview');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
+    }
+};
+
+$('#sizes').multiselect();
+$('#colors').multiselect();

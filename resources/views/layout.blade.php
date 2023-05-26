@@ -22,6 +22,7 @@ use App\Helper\Helper;
 <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-colorpicker/css/bootstrap-colorpicker.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/vendor/simply-notify/simple-notify.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/vendor/sweetalert/sweetalert.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/color_skins.css') }}">
 </head>
@@ -148,6 +149,7 @@ use App\Helper\Helper;
                         <ul aria-expanded="{{ request()->is('product/*') == 1  ? "true" : "" }}" class="collapse {{ request()->is('product/*') == 1 ? "in" : "" }}">
                             <li class="{{ (request()->is('product/color') == 1 || request()->is('product/color/*') == 1)  ? "active" : "" }}"><a href="{{ url('product/color') }}">Colors</a></li>
                             <li class="{{ (request()->is('product/size') == 1 || request()->is('product/size/*') == 1)  ? "active" : "" }}"><a href="{{ url('product/size') }}">Sizes</a></li>
+                            <li class="{{ (request()->is('product/') == 1 || request()->is('product/*') == 1)  ? "active" : "" }}"><a href="{{ url('product') }}">Products</a></li>
                         </ul>
                     </li>
                     <li class="{{ request()->is('purchase/*') == 1  ? "active" : "" }}">
@@ -181,6 +183,8 @@ use App\Helper\Helper;
 <script src="{{ asset('assets/vendor/simply-notify/simple-notify.min.js') }}"></script>
 <script src="{{ asset('assets/bundles/mainscripts.bundle.js') }}"></script>
 <script src="{{ asset('assets/vendor/sweetalert/sweetalert.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/multi-select/js/jquery.multi-select.js') }}"></script>
+<script src="{{ asset('assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js') }}"></script>
 <script src="{{ asset('assets/js/index.js') }}"></script>
 </body>
 </html>
